@@ -9,7 +9,7 @@ import { SearchBarProps, SearchProductBodyRequest } from './interface/type';
 
 import './style/search-bar.css';
 
-const Search: FC<SearchBarProps> = () => {
+const Search: FC<SearchBarProps> = ({ placeHolder }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [error, setError] = useState<any | null>(null);
   const [productList, setProductList] = useState<ProductObject[]>([]);
@@ -29,13 +29,22 @@ const Search: FC<SearchBarProps> = () => {
   }
 
   return (
-    <div className="wrapper">
-      <div>
-        <Input placeholder="Search a product..." value={inputValue} type="text" onChange={(e) => handleInputChange(e)}/>
-        <ProductList itemsList={productList}/>
+    <div className="search-wrapper">
+      <div className="search-header">
+        <h1>Search for your favorite product</h1>
       </div>
-      <Button text="Search" onClick={() => handleOnSearch()}/>
-      {error && <span>{error.message}</span>}
+      <div className="search">
+        <div className="search-inputs">
+          <Input placeholder={placeHolder} value={inputValue} type="text" onChange={(e) => handleInputChange(e)}/>
+          <div className="search-icon">
+            <Button text="Search" onClick={() => handleOnSearch()}/>
+          </div>
+        </div>
+        {
+          (productList.length > 0) && 
+            <ProductList itemsList={productList}/>
+        }
+      </div>
     </div>
   );
 }

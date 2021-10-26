@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Routes from './components/Navigation'
+import Routes from '../Navigation'
 
-import './App.css';
+import './styles/app.css'
 
 const App = () => {
   return (

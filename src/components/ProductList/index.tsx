@@ -19,22 +19,23 @@ const ProductList: FC<ProductListProps & RouteComponentProps> = ({ itemsList }) 
   }
 
   return (
-    <div className="wrapper">
-      {
-        (itemsList.length > 0) && 
-        <ul>
-          {
-            itemsList.map((element, key) => (
-              <li key={key} onClick={() => handleProductClick(element.id)}>
-                <div>
-                  <img src={element.image_front_small_url} alt={element.product_name ? element.product_name : ''}/>
-                  <div>{element.product_name}</div>
+    <div className="data-result">
+      <ul>
+        {
+          itemsList.map((element, key) => (
+            <li key={key} onClick={() => handleProductClick(element.id)}>
+              <div className="data-item">
+                <img src={element.image_front_small_url} alt={element.product_name ? element.product_name : 'Product'}/>
+                <div className="data-property">
+                  <span>
+                    {element.product_name ? element.product_name : "No name"}
+                  </span>
                 </div>
-              </li>
-            ))
-          }
-        </ul>
-      }
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   );
 }

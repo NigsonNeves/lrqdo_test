@@ -4,7 +4,7 @@ import SearchBar from '../../components/SearchBar';
 
 const Home: FC = () => {
   return (
-    <SearchBar />
+    <SearchBar placeHolder="Search product..."/>
   );
 }
 

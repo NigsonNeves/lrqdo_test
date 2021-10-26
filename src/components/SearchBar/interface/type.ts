@@ -1,7 +1,7 @@
 import { ProductObject } from "../../ProductList/interface/type";
 
 export interface SearchBarProps {
-  
+  placeHolder: string
 }
 
 export interface SearchProductBodyRequest {

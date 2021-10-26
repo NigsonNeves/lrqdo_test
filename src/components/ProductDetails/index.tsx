@@ -40,11 +40,13 @@ const ProductDetails: FC<ProductDetailsProps> = () => {
   }, [])
 
   return (
-    <div className="wrapper">
+    <div className="product-details-wrapper">
       {
         product ?
         <div>
-          <h1>Details</h1>
+          <div className="product-header">
+            <h1>{product.product_name}</h1>
+          </div>
           <span>{product.product_name}</span>
           <span>{product.categories}</span>
           <span>{product.image_front_url}</span>
