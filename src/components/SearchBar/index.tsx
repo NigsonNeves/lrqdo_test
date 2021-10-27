@@ -4,11 +4,12 @@ import { getMultipleProductsRequest } from '../../utils/api/request/product';
 import SearchIcon from '@material-ui/icons/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Input from '../Form/Input';
-import ProductList from '../ProductList';
-import { ProductObject } from '../ProductList/interface/type';
-import { SearchBarProps, SearchProductBodyRequest } from './interface/type';
+import ProductList from './product-list';
+import { SearchBarProps, SearchProductBodyRequest, ProductObject } from './interface/type';
+import ErrorMessage from '../ErrorMessage';
 
 import './style/search-bar.css';
+
 
 const Search: FC<SearchBarProps> = ({ placeHolder }) => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -25,7 +26,7 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") handleOnSearch()
+    if (event.key === "Enter") handleOnSearch();
   }
 
   const handleOnSearch = async (): Promise<void> => {
@@ -40,7 +41,7 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
   }
 
   useEffect(() => {
-    if (!inputValue) setProductList([])
+    if (!inputValue) setProductList([]);
   }, [inputValue])
 
   return (
@@ -67,7 +68,7 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
             <ProductList itemsList={productList}/>
         }
       </div>
-      {error && <p>{error.toString()}</p>}
+      {error && <ErrorMessage error={error.toString()} />}
     </div>
   );
 }

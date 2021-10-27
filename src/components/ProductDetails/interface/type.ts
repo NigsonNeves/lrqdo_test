@@ -3,6 +3,14 @@ export interface ProductDetailsProps {
   
 }
 
+export interface RightColumnProps {
+  product : ProductDetailsObject
+}
+
+export interface LeftColumnProps {
+  product : ProductDetailsObject
+} 
+
 export interface ProductDetailsBodyRequest {
   code: number
   product: ProductDetailsObject

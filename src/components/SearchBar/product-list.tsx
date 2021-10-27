@@ -3,7 +3,7 @@ import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom';
 
 import { ProductListProps } from './interface/type';
 
-import './style/product-list.css';
+import './style/search-bar.css';
 
 const ProductList: FC<ProductListProps & RouteComponentProps> = ({ itemsList }) => {
   const history = useHistory();

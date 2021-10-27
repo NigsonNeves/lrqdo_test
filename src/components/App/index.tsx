@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import Routes from '../Navigation'
+import Routes from '../Navigation';
 
-import './styles/app.css'
+import './styles/app.css';
 
-const App = () => {
+const App: FC = () => {
   return (
     <Routes /> 
   );

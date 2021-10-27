@@ -1,7 +1,16 @@
-import { ProductObject } from "../../ProductList/interface/type";
 
 export interface SearchBarProps {
   placeHolder: string
+}
+
+export interface ProductListProps {
+  itemsList: ProductObject[]
+}
+
+export interface ProductObject {
+  id: number
+  image_front_small_url: string
+  product_name?: string
 }
 
 export interface SearchProductBodyRequest {
