@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { getMultipleProductsRequest } from '../../utils/api/request/product';
-import Button from '../Form/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Input from '../Form/Input';
 import ProductList from '../ProductList';
 import { ProductObject } from '../ProductList/interface/type';
@@ -18,26 +19,47 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
     setInputValue(event.target.value);
   }
 
-  const handleOnSearch = async (): Promise<void> => { //Utiliser useMemo() pour la valeur de l'input
+  const handleCleanSearchBar = (): void => {
+    setInputValue('');
+    setProductList([]);
+  }
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") handleOnSearch()
+  }
+
+  const handleOnSearch = async (): Promise<void> => {
     try {
       let response: SearchProductBodyRequest = await getMultipleProductsRequest(inputValue);
 
       setProductList(response.products);
-    } catch(error) {
+      setError(null);
+    } catch(error: unknown) {
       setError(error);
     }
   }
 
+  useEffect(() => {
+    if (!inputValue) setProductList([])
+  }, [inputValue])
+
   return (
     <div className="search-wrapper">
-      <div className="search-header">
-        <h1>Search for your favorite product</h1>
-      </div>
       <div className="search">
         <div className="search-inputs">
-          <Input placeholder={placeHolder} value={inputValue} type="text" onChange={(e) => handleInputChange(e)}/>
+          <Input 
+            onKeyPress={(e) => handleKeyPress(e)} 
+            placeholder={placeHolder}
+            value={inputValue} type="text" 
+            onChange={(e) => handleInputChange(e)}
+          />
           <div className="search-icon">
-            <Button text="Search" onClick={() => handleOnSearch()}/>
+            {
+              (productList.length && inputValue) ?
+                <DeleteIcon onClick={() => handleCleanSearchBar()}/>
+              :
+                <SearchIcon onClick={() => handleOnSearch()}/>
+            }
           </div>
         </div>
         {
@@ -45,6 +67,7 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
             <ProductList itemsList={productList}/>
         }
       </div>
+      {error && <p>{error.toString()}</p>}
     </div>
   );
 }

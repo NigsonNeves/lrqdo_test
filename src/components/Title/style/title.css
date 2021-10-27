@@ -1,0 +1,14 @@
+.title-wrapper {
+  padding: 2rem 5rem;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+}
+
+.header h1 {
+  color: #BBBBBB;
+  font-weight:300;
+  font-size: 3rem;
+}

@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
 
 import SearchBar from '../../components/SearchBar';
+import Title from '../../components/Title';
 
 const Home: FC = () => {
   return (
-    <SearchBar placeHolder="Search product..."/>
+    <>
+      <Title title="Search for your favorite product" />
+      <SearchBar placeHolder="Search product..."/>
+    </>
   );
 }
 

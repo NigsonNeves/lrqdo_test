@@ -43,22 +43,34 @@ const ProductDetails: FC<ProductDetailsProps> = () => {
     <div className="product-details-wrapper">
       {
         product ?
-        <div>
-          <div className="product-header">
-            <h1>{product.product_name}</h1>
+        <>
+          <div className="product-details-left-column" >
+            <img src={product.image_front_url} alt={product.product_name} />
           </div>
-          <span>{product.product_name}</span>
-          <span>{product.categories}</span>
-          <span>{product.image_front_url}</span>
-          <span>{product.ingredients_text}</span>
-          {
-            product.allergens_hierarchy.map((element, key) => (
-              <span key={key}>{element}</span>
-            ))
-          }
-        </div>
+          <div className="product-details-right-column" >
+            <div className="product-description-header">
+              <span>{product.categories}</span>
+              <h1>{product.product_name}</h1>
+            </div>
+            <div className="product-description-body">
+              <h3>Ingredients</h3>
+              <p>{product.ingredients_text}</p>
+            </div>
+            <div className="product-description-body">
+              <h3>Hallergens</h3>
+              {
+                product.allergens_hierarchy.length ?
+                  product.allergens_hierarchy.map((element, key) => (
+                    <p key={key}>{element}</p>
+                  ))
+                :
+                  <p>No hallergen</p>
+              }
+            </div>
+          </div>
+        </>
         :
-        <span>No Data</span>
+          <span>No Data</span>
       }
     </div>
   );

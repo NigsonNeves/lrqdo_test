@@ -8,8 +8,8 @@ export const getProductDetailsRequest = async (code: string): Promise<ProductDet
     let response: ProductDetailsBodyRequest = await request.json();
 
     return response;
-  } catch (error) {
-    throw error
+  } catch (error: unknown) {
+    throw new Error("Couldn't load product details")
   }
 }
 
@@ -19,7 +19,7 @@ export const getMultipleProductsRequest = async (name: string): Promise<SearchPr
     let response: SearchProductBodyRequest = await request.json();
   
     return response;
-  } catch (error) {
-    throw error
+  } catch (error: unknown) {
+    throw new Error("Couldn't get products")
   }
 }
