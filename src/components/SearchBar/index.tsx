@@ -50,8 +50,10 @@ const Search: FC<SearchBarProps> = ({ placeHolder }) => {
         <div className="search-inputs">
           <Input 
             onKeyPress={(e) => handleKeyPress(e)} 
+            name="search-bar"
             placeholder={placeHolder}
-            value={inputValue} type="text" 
+            value={inputValue} 
+            type="text" 
             onChange={(e) => handleInputChange(e)}
           />
           <div className="search-icon">

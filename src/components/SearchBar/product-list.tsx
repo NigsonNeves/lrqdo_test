@@ -20,7 +20,7 @@ const ProductList: FC<ProductListProps & RouteComponentProps> = ({ itemsList }) 
 
   return (
     <div className="data-result">
-      <ul>
+      <ul aria-label="product-list">
         {
           itemsList.map((element, key) => (
             <li key={key} onClick={() => handleProductClick(element.id)}>
